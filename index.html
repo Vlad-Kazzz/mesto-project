@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="author" content="Казарян Владислав">
+    <title>Mesto</title>
+    <link rel="stylesheet" href="./pages/index.css">
+</head>
+<body class="root">
+    <header class="header">
+        <img class="header__logo" src="./images/logo.svg" alt="Логотип">
+    </header>
+    <main class="content">
+        <section class="profile">
+            <div class="profile__info">
+                <img class="profile__image" src="./images/profile-image.jpg" alt="Изображение профиля">
+                <div class="profile__bio">
+                    <h1 class="profile__name"> Жак-Ив Кусто </h1>
+                    <button type="button" class="profile__edit-button">
+                        <img class="profile__edit-icon" src="./images/edit-icon.svg" alt="Кнопка изменения профиля"> 
+                    </button>
+                    <p class="profile__about"> Исследователь океана </p>
+                </div>
+            </div>
+            <button type="button" class="profile__add-button">
+                <img class="profile__add-icon" src="./images/add-icon.svg" alt="Кнопка добавления нового поста"> 
+            </button>
+        </section>
+
+        <section class="photo-grid">
+            <div class="photo-grid__list">
+                <article class="photo-grid__element"> 
+                    <img class="photo-grid__image" src="./images/Karachaevsk.jpg" alt="Фотография Карачаевска">
+                    <div class="photo-grid__caption-container">
+                        <h2 class="photo-grid__title"> Карачаевск </h2>
+                        <img class="photo-grid__like-button" src="./images/like-button.svg" alt="Кнопка нравиться">
+                    </div>
+                </article>
+
+                <article class="photo-grid__element"> 
+                    <img class="photo-grid__image" src="./images/Gora-Elbrus.jpg" alt="Фотография горы Эльбрус">
+                    <div class="photo-grid__caption-container">
+                        <h2 class="photo-grid__title"> Гора Эльбрус </h2>
+                        <img class="photo-grid__like-button" src="./images/like-button.svg" alt="Кнопка нравиться">
+                    </div>
+                </article>
+
+                <article class="photo-grid__element"> 
+                    <img class="photo-grid__image" src="./images/Dombai.jpg" alt="Фотография Домбая">
+                    <div class="photo-grid__caption-container">
+                        <h2 class="photo-grid__title"> Домбай </h2>
+                        <img class="photo-grid__like-button" src="./images/like-button.svg" alt="Кнопка нравиться">
+                    </div>
+                </article>
+
+                <article class="photo-grid__element"> 
+                    <img class="photo-grid__image" src="./images/Gora-Elbrus.jpg" alt="Фотография горы Эльбрус">
+                    <div class="photo-grid__caption-container">
+                        <h2 class="photo-grid__title"> Гора Эльбрус </h2>
+                        <img class="photo-grid__like-button" src="./images/like-button.svg" alt="Кнопка нравиться">
+                    </div>
+                </article>
+
+                <article class="photo-grid__element"> 
+                    <img class="photo-grid__image" src="./images/Dombai.jpg" alt="Фотография Домбая">
+                    <div class="photo-grid__caption-container">
+                        <h2 class="photo-grid__title"> Домбай </h2>
+                        <img class="photo-grid__like-button" src="./images/like-button.svg" alt="Кнопка нравиться">
+                    </div>
+                </article>
+
+                <article class="photo-grid__element"> 
+                    <img class="photo-grid__image" src="./images/Karachaevsk.jpg" alt="Фотография Карачаевска">
+                    <div class="photo-grid__caption-container">
+                        <h2 class="photo-grid__title"> Карачаево-Черкессия </h2>
+                        <img class="photo-grid__like-button" src="./images/like-button.svg" alt="Кнопка нравиться">
+                    </div>
+                </article>
+            </div>
+        </section>
+    </main>
+    <footer class="footer">
+        <h3 class="footer__copyright"> &copy; 2022 Mesto Russia </h3>
+    </footer>
+
+    <div class="popup popup__edit popup_opened">
+        <div class="popup__window">
+            <div class="popup__content">
+                <button type="button" class="popup__close-button"> <img class="popup__close-icon" src="./images/close-button.svg"> </button>
+                <h3 class="popup__title"> Редактировать профиль </h3>
+                <form class="popup__edit-form">
+                    <input type="text" class="popup__edit-input popup__edit-name" min="1" max="50" required>
+                    <input tyle="text" class="popup__edit-input popup__edit-about" min="1" max="50" required>
+                    <button type="submit" class="popup__button-save">
+                        Сохранить
+                    </button>
+                </form>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

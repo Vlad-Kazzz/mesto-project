@@ -1,17 +1,28 @@
-# Проект: Место
+# Проект для Яндекс.Практикума: Mesto
 
-### Обзор
+### Описание
+  Проект "Mesto" - адаптивный сайт/профиль, в котором люди могут делиться своими фотографиями, созданный по макету Figma. Проект оптимизирован под самые распространенные разрешения экранов. 
 
+  [Проектная работа на GitHub Pages](https://vlad-kazzz.github.io/russian-travel/)
+
+**Функциональность**
+
+* Построение сложных сеток
+* Адаптивный дизайн
+
+**Используемые технологии**
+
+* Grid Layout
+* Flexbox
+* BEM Methology
 * Figma
-* Картинки
+* Git
 
 **Figma**
 
-* [Ссылка на макет в Figma](https://www.figma.com/file/2cn9N9jSkmxD84oJik7xL7/JavaScript.-Sprint-4?node-id=0%3A1)
+* [Ссылка на макет в Figma](https://www.figma.com/file/2cn9N9jSkmxD84oJik7xL7/JavaScript.-Sprint-4?node-id=28212%3A212)
 
-**Картинки**
+**Чеклист**
 
-Доставать картинки предстоит из Фигмы. Это расхожая практика, поэтому полезно потренироваться.
-Не забудьте [оптимизировать картинки](https://tinypng.com/), чтобы ваш сайт загружался быстрее.
+* [Ссылка на чеклист](https://code.s3.yandex.net/web-developer/checklists-pdf/web-plus/checklist-3.pdf)
 
-Удачи!

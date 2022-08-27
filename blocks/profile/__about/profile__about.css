@@ -1,0 +1,22 @@
+.profile__about{
+    margin: 0;
+    padding: 0;
+    grid-area: about;
+    font-style: normal;
+    font-weight: 400;
+    font-size: 18px;
+    line-height: 1.22;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
+    color: #FFFFFF;
+}
+
+@media screen and (min-width: 320px) and (max-width: 1279px){
+    .profile__about{
+        font-style: normal;
+        font-weight: 400;
+        font-size: 14px;
+        line-height: 1.21;
+    }
+}
