@@ -29,6 +29,11 @@ const photoTemplate = document.querySelector('#photos-element').content;
 const photoTitleInput = document.querySelector('#inputTitle');
 const photoLinkInput = document.querySelector('#inputLink');
 
+// Images popup
+const popupImage = document.querySelector('.popup-photos');
+const popupImagePhoto = document.querySelector('.popup-photos__image');
+const popupImageTitle = document.querySelector('.popup-photos__title');
+
 // Перенести функции сразу после переменных
 
 // Открытие и закрытие попапов (popup-edit, popup-new-place)
@@ -105,7 +110,8 @@ function createPhoto (name, link) {
   const photoImage = photoElement.querySelector('.photo-grid__image');
   photoImage.src = link;
   photoImage.alt = name;
-  // photoImage.addEvenetListener('click', );
+  photoImage.addEventListener('click', openImagePlacePopup);
+
 
   photoElement.querySelector('.photo-grid__like-button').addEventListener('click', (evt)=> {
     evt.target.classList.toggle('photo-grid__like-button_active');
@@ -134,14 +140,24 @@ function deletePhoto(evt) {
   photo.remove();
 }
 
-// Добавление нового фото в начало контейнера
 function addNewPhoto(evt) {
   evt.preventDefault();
   renderPhoto(createPhoto(photoTitleInput.value, photoLinkInput.value), photoGridList);
   photoTitleInput.value = '';
   photoLinkInput.value = '';
+
   closePopup(popupNewPlace);
 }
 
 popupNewPlaceForm.addEventListener('submit', addNewPhoto);
 
+function openImagePlacePopup(evt){
+  openPopup(popupImage);
+  const popupImg = evt.target;
+  const popupImgElement = popupImg.closest('.photo-grid__element');
+  const popupImgTitle = popupImgElement.querySelector('.photo-grid__title');
+
+  popupImagePhoto.src = popupImg.src;
+  popupImagePhoto.alt = popupImgTitle.textContent;
+  popupImageTitle.textContent = popupImgTitle.textContent;
+}

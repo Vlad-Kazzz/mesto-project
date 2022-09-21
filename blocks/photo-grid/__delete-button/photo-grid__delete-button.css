@@ -7,7 +7,6 @@
     position: absolute;
     background-image: url('../../../images/Trash-button.svg');
     background-position: center;
-    background-color: none;
     top: 20px;
     right: 20px;
     transition: opacity 0.3s ease;
