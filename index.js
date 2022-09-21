@@ -11,7 +11,12 @@ const profileAbout = document.querySelector('.profile__about');
 const inputName = document.querySelector('#inputName');
 const inputAbout = document.querySelector('#inputAbout');
 const popupEditSaveButton = editForm.querySelector('.edit-form__submit-button');
-const popupSubmitButton = document.querySelector('.popup__button-save');
+
+// popup New place
+const popupNewPlaceForm = document.querySelector('.popup__place-form');
+const popupNewPlaceSaveButton = popupNewPlaceForm.querySelector('.place-form__submit-button');
+
+// const popupSubmitButton = document.querySelector('.popup__button-save');
 const popupNewPlace = document.querySelector('.popup-new-place');
 const popupNewPlaceButton = document.querySelector('.profile__add-button');
 
@@ -19,6 +24,10 @@ const popupNewPlaceButton = document.querySelector('.profile__add-button');
 const photoGridList = document.querySelector('.photo-grid__list');
 const photoTemplate = document.querySelector('#photos-element').content;
 
+
+// Add New place
+const photoTitleInput = document.querySelector('#inputTitle');
+const photoLinkInput = document.querySelector('#inputLink');
 
 // Перенести функции сразу после переменных
 
@@ -102,13 +111,13 @@ function createPhoto (name, link) {
     evt.target.classList.toggle('photo-grid__like-button_active');
   });
   
-  // photoElement.querySelector('.photo-grid__delete-button');
+  photoElement.querySelector('.photo-grid__delete-button').addEventListener('click', deletePhoto);
 
   return photoElement;
 }
 
 function renderPhoto(photo, container){
-  container.append(photo);
+  container.prepend(photo);
 }
 
 function renderPhotos(){
@@ -120,4 +129,19 @@ function renderPhotos(){
 renderPhotos();
 
 
+function deletePhoto(evt) {
+  const photo = evt.target.closest('.photo-grid__element');
+  photo.remove();
+}
+
+// Добавление нового фото в начало контейнера
+function addNewPhoto(evt) {
+  evt.preventDefault();
+  renderPhoto(createPhoto(photoTitleInput.value, photoLinkInput.value), photoGridList);
+  photoTitleInput.value = '';
+  photoLinkInput.value = '';
+  closePopup(popupNewPlace);
+}
+
+popupNewPlaceForm.addEventListener('submit', addNewPhoto);
 
