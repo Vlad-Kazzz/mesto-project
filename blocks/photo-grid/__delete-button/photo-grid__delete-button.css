@@ -1,0 +1,18 @@
+.photo-grid__delete-button{
+    width: 18px;
+    height: 19px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    position: absolute;
+    background-image: url('../../../images/Trash-button.svg');
+    background-position: center;
+    background-color: none;
+    top: 20px;
+    right: 20px;
+    transition: opacity 0.3s ease;
+}
+
+.photo-grid__delete-button:hover{
+    opacity: 0.6;
+}

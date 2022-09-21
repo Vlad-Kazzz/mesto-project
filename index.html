@@ -31,7 +31,7 @@
 
         <section class="photo-grid">
             <ul class="photo-grid__list">
-                <li class="photo-grid__element"> 
+                <!-- <li class="photo-grid__element"> 
                     <img class="photo-grid__image" src="./images/Karachaevsk.jpg" alt="Фотография Карачаевска">
                     <div class="photo-grid__caption-container">
                         <h2 class="photo-grid__title"> Карачаевск </h2>
@@ -77,7 +77,7 @@
                         <h2 class="photo-grid__title"> Карачаево-Черкессия </h2>
                         <button type="button" class="photo-grid__like-button"> </button>
                     </div>
-                </li>
+                </li> -->
             </ul>
         </section>
     </main>
@@ -85,18 +85,45 @@
         <p class="footer__copyright"> &copy; 2022 Mesto Russia </p>
     </footer>
 
-    <div class="popup popup_opened">
+    <div class="popup popup-edit">
         <div class="popup__content">
-            <button type="button" class="popup__close-button"> <img class="popup__close-icon" src="./images/close-button.svg" alt="Кнопка закрытия всплывающего окна"> </button>
+            <button type="button" class="popup__close-button popup__close-button-edit"> <img class="popup__close-icon" src="./images/close-button.svg" alt="Кнопка закрытия всплывающего окна"> </button>
             <h3 class="popup__title"> Редактировать профиль </h3>
-            <form name="profile-edit-form" class="popup__edit-form">
-                <input type="text" name="name" id="name" class="popup__edit-input" minlength="1" maxlength="50" required>
-                <input type="text" name="about" id="about" class="popup__edit-input" minlength="1" maxlength="150" required>
-                <button type="submit" class="popup__button-save">
+            <form name="profile-edit-form" class="popup__form popup__edit-form">
+                <input type="text" name="name" id="inputName" class="popup__input popup__edit-input" minlength="1" maxlength="50" placeholder="Имя" required>
+                <input type="text" name="about" id="inputAbout" class="popup__input popup__edit-input" minlength="1" maxlength="150" placeholder="О себе" required>
+                <button type="submit" class="popup__button-save edit-form__submit-button">
                     Сохранить
                 </button>
             </form>
         </div>
     </div>
+
+    <div class="popup popup-new-place">
+        <div class="popup__content">
+            <button type="button" class="popup__close-button popup__close-button-place"> <img class="popup__close-icon" src="./images/close-button.svg" alt="Кнопка закрытия всплывающего окна"> </button>
+            <h3 class="popup__title"> Новое место </h3>
+            <form name="profile-place-form" class="popup__form popup__place-form">
+                <input type="text" name="title" id="inputTitle" class="popup__input popup__add-input" minlength="1" maxlength="50" required placeholder="Название">
+                <input type="text" name="link" id="inputLink" class="popup__input popup__add-input" minlength="1" maxlength="150" required placeholder="Ссылка на картинку">
+                <button type="submit" class="popup__button-save place-form__submit-button">
+                    Создать
+                </button>
+            </form>
+        </div>
+    </div>
+
+    <template id="photos-element">
+        <li class="photo-grid__element"> 
+            <button type="button" class="photo-grid__delete-button"> </button>
+            <img class="photo-grid__image" src="" alt="">
+            <div class="photo-grid__caption-container">
+                <h2 class="photo-grid__title"></h2>
+                <button type="button" class="photo-grid__like-button"> </button>
+            </div>
+        </li>
+    </template>
+
+    <script src="./index.js"></script>
 </body>
 </html>
