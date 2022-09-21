@@ -104,14 +104,15 @@ const initialCards = [
     }
   ]; 
 
+// Рендер карточек 
 function createPhoto (name, link) {
   const photoElement = photoTemplate.querySelector('.photo-grid__element').cloneNode(true);
   photoElement.querySelector('.photo-grid__title').textContent = name;
   const photoImage = photoElement.querySelector('.photo-grid__image');
   photoImage.src = link;
   photoImage.alt = name;
-  photoImage.addEventListener('click', openImagePlacePopup);
 
+  photoImage.addEventListener('click', openImagePlacePopup);
 
   photoElement.querySelector('.photo-grid__like-button').addEventListener('click', (evt)=> {
     evt.target.classList.toggle('photo-grid__like-button_active');
@@ -122,14 +123,16 @@ function createPhoto (name, link) {
   return photoElement;
 }
 
-function renderPhoto(photo, container){
-  container.prepend(photo);
-}
-
+// Пройдемся по объекту initialCards
 function renderPhotos(){
   initialCards.forEach((item)=> 
-    renderPhoto(createPhoto(item.name, item.link), photoGridList)
+  renderPhoto(createPhoto(item.name, item.link), photoGridList)
   );
+}
+
+// Добавление карточек в разметку
+function renderPhoto(photo, container){
+  container.prepend(photo);
 }
 
 renderPhotos();
