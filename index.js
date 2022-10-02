@@ -1,5 +1,5 @@
 //Объявляем переменные
-const popupsCloseButton = document.querySelectorAll('.popup__close-button');
+const popupCloseButtons = document.querySelectorAll('.popup__close-button');
 
 //popup edit profile
 const popupEdit = document.querySelector('.popup-edit');
@@ -52,7 +52,7 @@ popupNewPlaceButton.addEventListener('click', function(){
 });
 
 // Закрытие всех попапов нажатием кнопки "закрыть попап" для всех модальных окон
-popupsCloseButton.forEach((item) => 
+popupCloseButtons.forEach((item) => 
   item.addEventListener('click', (evt) =>
     closePopup(evt.target.closest('.popup'))
   )
