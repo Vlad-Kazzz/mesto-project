@@ -10,6 +10,7 @@
     white-space: nowrap;
     overflow: hidden;
     color: #FFFFFF;
+    max-width: 450px;
 }
 
 @media screen and (min-width: 320px) and (max-width: 1279px){
@@ -18,5 +19,6 @@
         font-size: 27px;
         line-height: 1.22;
         margin-left: 13px;
+        max-width: 250px;
     }
 }

@@ -1,6 +1,5 @@
 //Объявляем переменные
-const popup = document.querySelector('.popup');
-const popupCloseButton = document.querySelectorAll('.popup__close-button');
+const popupCloseButtons = document.querySelectorAll('.popup__close-button');
 
 //popup edit profile
 const popupEdit = document.querySelector('.popup-edit');
@@ -30,7 +29,7 @@ const popupNewPlace = document.querySelector('.popup-new-place');
 const popupNewPlaceButton = document.querySelector('.profile__add-button');
 
 // Cards
-const photoGridList = document.querySelector('.photo-grid__list');
+const photoGridContainer = document.querySelector('.photo-grid__list');
 const photoTemplate = document.querySelector('#photos-element').content;
 
 
@@ -66,7 +65,7 @@ popupEditAvatarButton.addEventListener('click', function(){
 });
 
 // Закрытие всех попапов нажатием кнопки "закрыть попап" для всех модальных окон
-popupCloseButton.forEach((item) => 
+popupCloseButtons.forEach((item) => 
   item.addEventListener('click', (evt) =>
     closePopup(evt.target.closest('.popup'))
   )
@@ -148,7 +147,7 @@ function createPhoto (name, link) {
 // Пройдемся по объекту initialCards
 function renderPhotos(){
   initialCards.forEach((item)=> 
-  renderPhoto(createPhoto(item.name, item.link), photoGridList)
+  renderPhoto(createPhoto(item.name, item.link), photoGridContainer)
   );
 }
 
@@ -167,7 +166,7 @@ function deletePhoto(evt) {
 
 function addNewPhoto(evt) {
   evt.preventDefault();
-  renderPhoto(createPhoto(photoTitleInput.value, photoLinkInput.value), photoGridList);
+  renderPhoto(createPhoto(photoTitleInput.value, photoLinkInput.value), photoGridContainer);
   photoTitleInput.value = '';
   photoLinkInput.value = '';
 
