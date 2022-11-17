@@ -15,7 +15,9 @@
     <main class="content">
         <section class="profile">
             <div class="profile__info">
-                <img class="profile__image" src="./images/profile-image.jpg" alt="Изображение профиля">
+                <div class="profile__image-container">
+                    <img class="profile__image" src="./images/profile-image.jpg" alt="Изображение профиля">
+                </div>
                 <div class="profile__bio">
                     <h1 class="profile__name"> Жак-Ив Кусто </h1>
                     <button type="button" class="profile__edit-button">
@@ -118,6 +120,19 @@
             <button type="button" class="popup__close-button popup__close-button-photos"> <img class="popup__close-icon" src="./images/close-button.svg" alt="Кнопка закрытия всплывающего окна"> </button>
             <img class="popup-photos__image" src="" alt="">
             <p class="popup-photos__title"></p>
+        </div>
+    </div>
+
+    <div class="popup popup-edit-avatar">
+        <div class="popup__content">
+            <button type="button" class="popup__close-button popup__close-button-edit-avatar"> <img class="popup__close-icon" src="./images/close-button.svg" alt="Кнопка закрытия всплывающего окна"> </button>
+            <h3 class="popup__title"> Обновить аватар </h3>
+            <form name="profile-edit-form" class="popup__form popup__edit-avatar-form">
+                <input type="text" name="avatar" id="inputAvatar" class="popup__input popup__edit-input" minlength="1" maxlength="50" placeholder="Ссылка на новый аватар" required>
+                <button type="submit" class="popup__button-save edit-avatar-form__submit-button">
+                    Сохранить
+                </button>
+            </form>
         </div>
     </div>
 

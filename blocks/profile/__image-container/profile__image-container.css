@@ -1,0 +1,18 @@
+.profile__image-container{
+    position: relative;
+    cursor: pointer;
+}
+
+.profile__image-container::after{
+    content: "";
+    height: 100%;
+    left: 0;
+    position: absolute;
+    top: 0;
+    transition: all 0.3s ease;
+    width: 100%;
+}
+
+.profile__image-container:hover::after{
+    background: rgba(0, 0, 0, 0.8) url('../../../images/profile_image_edit.svg') no-repeat center;
+}

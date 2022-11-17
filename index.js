@@ -12,6 +12,15 @@ const inputName = document.querySelector('#inputName');
 const inputAbout = document.querySelector('#inputAbout');
 const popupEditSaveButton = editForm.querySelector('.edit-form__submit-button');
 
+//popup edit avatar
+const popupEditAvatar = document.querySelector('.popup-edit-avatar');
+const popupEditAvatarButton = document.querySelector('.profile__image-container');
+const inputAvatar = document.querySelector('#inputAvatar');
+const editAvatarForm = document.querySelector('.popup__edit-avatar-form');
+const popupEditAvatarSaveButton = editAvatarForm.querySelector('.edit-avatar-form__submit-button');
+
+const profileAvatar = document.querySelector('.profile__image');
+
 // popup New place
 const popupNewPlaceForm = document.querySelector('.popup__place-form');
 const popupNewPlaceSaveButton = popupNewPlaceForm.querySelector('.place-form__submit-button');
@@ -52,6 +61,10 @@ popupNewPlaceButton.addEventListener('click', function(){
   openPopup(popupNewPlace);
 });
 
+popupEditAvatarButton.addEventListener('click', function(){
+  openPopup(popupEditAvatar);
+});
+
 // Закрытие всех попапов нажатием кнопки "закрыть попап" для всех модальных окон
 popupCloseButton.forEach((item) => 
   item.addEventListener('click', (evt) =>
@@ -75,6 +88,15 @@ function saveEditPopup(evt){
 }
 editForm.addEventListener('submit', saveEditPopup);
 
+//Меняем аватар применяя полученную ссылку из input
+function changeAvatar(evt){
+  evt.preventDefault();
+  profileAvatar.src = inputAvatar.value;
+  closePopup(popupEditAvatar);
+}
+
+//Добавляем слушателя на форму editAvatarForm
+editAvatarForm.addEventListener('submit', changeAvatar);
 
 //Шесть карточек "из коробки"
 const initialCards = [
