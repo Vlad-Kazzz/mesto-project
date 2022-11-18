@@ -47,10 +47,14 @@ const popupImageTitle = document.querySelector('.popup-photos__title');
 // Открытие и закрытие попапов (popup-edit, popup-new-place)
 function openPopup(popupElement){
   popupElement.classList.add('popup_opened');
+  document.addEventListener('keydown', closePopupEsc);
+  document.addEventListener('click', closePopupOverlay);
 }
 
 function closePopup(popupElement){
   popupElement.classList.remove('popup_opened');
+  document.removeEventListener('keydown', closePopupEsc);
+  document.removeEventListener('click', closePopupOverlay);
 }
 
 popupEditButton.addEventListener('click', renderEditPopup);
@@ -71,6 +75,40 @@ popupCloseButtons.forEach((item) =>
   )
 );
 
+// Закрытие по клику на оверлей || ESC попапа
+
+// function closePopupOverlay(evt){
+//   if (evt.target !== evt.currentTarget){
+//     return;
+//   }
+//   closePopup(document.querySelector('.popup_opened'));
+// }
+
+function closePopupOverlay(evt){
+  //Проверяем, если у нажатого элемента класс popup_opened, если нет - закрываем попап = клик по всему вне popup__content
+  if (evt.target.classList.contains('popup_opened')){
+    closePopup(document.querySelector('.popup_opened'));
+  }
+}
+
+// function closePopupOverlay(evt){
+//   if (!evt.target.closest('.popup__content')){ 
+//     closePopup(evt.target.closest('.popup'));
+//   }
+// }
+
+// function closePopupOverlay(evt){
+//   //Проверяем, если у нажатого объекта в родителях объект с классом popup__content (то есть click overlay). Если нет - закрываем попап
+//   if (!evt.target.closest('.popup__content')){ 
+//     closePopup(evt.target.closest('.popup'));
+//   }
+// }
+
+function closePopupEsc(evt){
+  if (evt.keyCode === 27){
+    closePopup(document.querySelector('.popup_opened'));
+  }
+}
 
 //Сохранение переменных из инпутов в Popup-edit и наоборот
 function renderEditPopup(){
