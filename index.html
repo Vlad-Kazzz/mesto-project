@@ -51,9 +51,12 @@
         <div class="popup__content">
             <button type="button" class="popup__close-button popup__close-button-edit"> <img class="popup__close-icon" src="./images/close-button.svg" alt="Кнопка закрытия всплывающего окна"> </button>
             <h3 class="popup__title"> Редактировать профиль </h3>
-            <form name="profile-edit-form" class="popup__form popup__edit-form">
-                <input type="text" name="name" id="inputName" class="popup__input popup__edit-input" minlength="1" maxlength="50" placeholder="Имя" required>
-                <input type="text" name="about" id="inputAbout" class="popup__input popup__edit-input" minlength="1" maxlength="150" placeholder="О себе" required>
+            <form name="profile-edit-form" class="popup__form popup__edit-form" novalidate>
+                <input type="text" name="name" id="input-name" class="popup__input popup__edit-input" minlength="2" maxlength="40" placeholder="Имя" pattern="^[A-Za-zА-Яа-яЁё\s\D]+" required data-error-message="Разрешены только латинские, кириллические буквы, знаки дефиса и пробелы">
+                <span class="input-name-error popup__input-error">Вы пропустили это поле.</span>
+
+                <input type="text" name="about" id="input-about" class="popup__input popup__edit-input" minlength="2" maxlength="200" placeholder="О себе" pattern="^[A-Za-zА-Яа-яЁё\s\D]+" required data-error-message="Разрешены только латинские, кириллические буквы, знаки дефиса и пробелы">
+                <span class="input-about-error popup__input-error">Вы пропустили это поле.</span>
                 <button type="submit" class="popup__button-save edit-form__submit-button">
                     Сохранить
                 </button>
@@ -65,9 +68,12 @@
         <div class="popup__content">
             <button type="button" class="popup__close-button popup__close-button-place"> <img class="popup__close-icon" src="./images/close-button.svg" alt="Кнопка закрытия всплывающего окна"> </button>
             <h3 class="popup__title"> Новое место </h3>
-            <form name="profile-place-form" class="popup__form popup__place-form">
-                <input type="text" name="title" id="inputTitle" class="popup__input popup__add-input" minlength="1" maxlength="50" required placeholder="Название">
-                <input type="text" name="link" id="inputLink" class="popup__input popup__add-input" minlength="1" maxlength="150" required placeholder="Ссылка на картинку">
+            <form name="profile-place-form" class="popup__form popup__place-form" novalidate>
+                <input type="text" name="title" id="input-title" class="popup__input popup__add-input" minlength="2" maxlength="30" pattern="^[A-Za-zА-Яа-яЁё\s\D]+" placeholder="Название" required data-error-message="Разрешены только латинские, кириллические буквы, знаки дефиса и пробелы">
+                <span class="input-title-error popup__input-error">Вы пропустили это поле.</span>
+
+                <input type="url" name="link" id="input-link" class="popup__input popup__add-input" minlength="1" maxlength="400" required placeholder="Ссылка на картинку">
+                <span class="input-link-error popup__input-error">Введите адрес сайта.</span>
                 <button type="submit" class="popup__button-save place-form__submit-button">
                     Создать
                 </button>

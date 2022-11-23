@@ -7,8 +7,8 @@ const popupEditButton = document.querySelector('.profile__edit-button');
 const editForm = document.querySelector('.popup__edit-form');
 const profileName = document.querySelector('.profile__name');
 const profileAbout = document.querySelector('.profile__about');
-const inputName = document.querySelector('#inputName');
-const inputAbout = document.querySelector('#inputAbout');
+const inputName = document.querySelector('#input-name');
+const inputAbout = document.querySelector('#input-about');
 const popupEditSaveButton = editForm.querySelector('.edit-form__submit-button');
 
 //popup edit avatar
@@ -34,8 +34,8 @@ const photoTemplate = document.querySelector('#photos-element').content;
 
 
 // Add New place
-const photoTitleInput = document.querySelector('#inputTitle');
-const photoLinkInput = document.querySelector('#inputLink');
+const photoTitleInput = document.querySelector('#input-title');
+const photoLinkInput = document.querySelector('#input-link');
 
 // Images popup
 const popupImage = document.querySelector('.popup-photos');
@@ -223,3 +223,84 @@ function openImagePlacePopup(evt){
   popupImagePhoto.alt = popupImgTitle.textContent;
   popupImageTitle.textContent = popupImgTitle.textContent;
 }
+
+// Form validation
+let selectors;
+
+const showInputError = (formElement, inputElement, errorMessage) => {
+  const errorElement = formElement.querySelector(`.${inputElement.id}-error`);
+  inputElement.classList.add(selectors.inputErrorSelector);
+  errorElement.textContent = errorMessage;
+  errorElement.classList.add('popup__input-error_active');
+} 
+
+const hideInputError = (formElement, inputElement) => {
+  const errorElement = formElement.querySelector(`.${inputElement.id}-error`);
+  inputElement.classList.remove(selectors.inputErrorSelector);
+  errorElement.textContent = '';
+  errorElement.classList.remove('popup__input-error_active');
+}
+
+const checkInputValidity = (formElement, inputElement) => {
+  if (!inputElement.validity.valid){
+    showInputError(formElement, inputElement, inputElement.validationMessage);
+  } else {
+    hideInputError(formElement, inputElement);
+  }
+
+  if (inputElement.validity.patternMismatch){
+    inputElement.setCustomValidity(inputElement.dataset.errorMessage);
+  } else {
+    inputElement.setCustomValidity('');
+  }
+}
+
+const setEventListeners = (formElement) => {
+  const inputList = Array.from(formElement.querySelectorAll(selectors.inputSelector));
+  const buttonElement = formElement.querySelector(selectors.submitButtonSelector);
+
+  toggleButtonState(inputList, buttonElement);
+
+  inputList.forEach((inputElement) => {
+    inputElement.addEventListener('input', function(){
+      checkInputValidity(formElement, inputElement);
+      toggleButtonState(inputList, buttonElement);
+    });
+  });
+
+}
+
+const enableValidation = (settings) => {
+  selectors = settings;
+  const formList = Array.from(document.querySelectorAll(selectors.formSelector));
+  formList.forEach((formElement) => {
+    formElement.addEventListener('submit', function (evt){
+      evt.preventDefault();
+    });
+    setEventListeners(formElement);
+  });
+}
+
+const hasInvalidInput = (inputList) => {
+  return inputList.some((inputElement) => {
+    return !inputElement.validity.valid;
+  })
+}
+
+const toggleButtonState = (inputList, buttonElement) => {
+  if (hasInvalidInput(inputList)) {
+    buttonElement.classList.add(selectors.disabledButtonSelector);
+    buttonElement.disabled = 'true';
+  } else {
+    buttonElement.classList.remove(selectors.disabledButtonSelector);
+    buttonElement.disabled = 'false';
+  }
+}
+
+enableValidation({
+  formSelector: '.popup__form',
+  inputSelector: '.popup__input',
+  submitButtonSelector: '.popup__button-save',
+  disabledButtonSelector: 'popup__button-save_disabled',
+  inputErrorSelector: 'popup__input_type_error',
+});
