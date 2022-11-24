@@ -72,7 +72,7 @@
                 <input type="text" name="title" id="input-title" class="popup__input popup__add-input" minlength="2" maxlength="30" pattern="^[A-Za-zА-Яа-яЁё\s\D]+" placeholder="Название" required data-error-message="Разрешены только латинские, кириллические буквы, знаки дефиса и пробелы">
                 <span class="input-title-error popup__input-error">Вы пропустили это поле.</span>
 
-                <input type="url" name="link" id="input-link" class="popup__input popup__add-input" minlength="1" maxlength="400" required placeholder="Ссылка на картинку">
+                <input type="url" name="link" id="input-link" class="popup__input popup__add-input" required placeholder="Ссылка на картинку">
                 <span class="input-link-error popup__input-error">Введите адрес сайта.</span>
                 <button type="submit" class="popup__button-save place-form__submit-button">
                     Создать
@@ -94,7 +94,8 @@
             <button type="button" class="popup__close-button popup__close-button-edit-avatar"> <img class="popup__close-icon" src="./images/close-button.svg" alt="Кнопка закрытия всплывающего окна"> </button>
             <h3 class="popup__title"> Обновить аватар </h3>
             <form name="profile-edit-form" class="popup__form popup__edit-avatar-form">
-                <input type="text" name="avatar" id="inputAvatar" class="popup__input popup__edit-input" minlength="1" maxlength="50" placeholder="Ссылка на новый аватар" required>
+                <input type="url" name="avatar" id="input-avatar" class="popup__input popup__edit-input" placeholder="Ссылка на новый аватар" required>
+                <span class="input-avatar-error popup__input-error">Введите адрес сайта.</span>
                 <button type="submit" class="popup__button-save edit-avatar-form__submit-button">
                     Сохранить
                 </button>
