@@ -6,28 +6,28 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="author" content="Казарян Владислав">
     <title>Mesto</title>
-    <link rel="stylesheet" href="./pages/index.css">
+    <!-- <link rel="stylesheet" href="./pages/index.css"> -->
 </head>
 <body class="root">
     <header class="header">
-        <img class="header__logo" src="./images/logo.svg" alt="Логотип">
+        <img class="header__logo" src="<%=require('./images/logo.svg')%>" alt="Логотип">
     </header>
     <main class="content">
         <section class="profile">
             <div class="profile__info">
                 <div class="profile__image-container">
-                    <img class="profile__image" src="./images/profile-image.jpg" alt="Изображение профиля">
+                    <img class="profile__image" src="<%=require('./images/profile-image.jpg')%>" alt="Изображение профиля">
                 </div>
                 <div class="profile__bio">
                     <h1 class="profile__name"> Жак-Ив Кусто </h1>
                     <button type="button" class="profile__edit-button">
-                        <img class="profile__edit-icon" src="./images/edit-icon.svg" alt="Кнопка изменения профиля"> 
+                        <img class="profile__edit-icon" src="<%=require('./images/edit-icon.svg')%>" alt="Кнопка изменения профиля"> 
                     </button>
                     <p class="profile__about"> Исследователь океана </p>
                 </div>
             </div>
             <button type="button" class="profile__add-button">
-                <img class="profile__add-icon" src="./images/add-icon.svg" alt="Кнопка добавления нового поста"> 
+                <img class="profile__add-icon" src="<%=require('./images/add-icon.svg')%>" alt="Кнопка добавления нового поста"> 
             </button>
         </section>
 
@@ -49,7 +49,7 @@
 
     <div class="popup popup-edit">
         <div class="popup__content">
-            <button type="button" class="popup__close-button popup__close-button-edit"> <img class="popup__close-icon" src="./images/close-button.svg" alt="Кнопка закрытия всплывающего окна"> </button>
+            <button type="button" class="popup__close-button popup__close-button-edit"> <img class="popup__close-icon" src="<%=require('./images/close-button.svg')%>" alt="Кнопка закрытия всплывающего окна"> </button>
             <h3 class="popup__title"> Редактировать профиль </h3>
             <form name="profile-edit-form" class="popup__form popup__edit-form" novalidate>
                 <input type="text" name="name" id="input-name" class="popup__input popup__edit-input" minlength="2" maxlength="40" placeholder="Имя" pattern="^[A-Za-zА-Яа-яЁё\s\D]+" required data-error-message="Разрешены только латинские, кириллические буквы, знаки дефиса и пробелы">
@@ -66,7 +66,7 @@
 
     <div class="popup popup-new-place">
         <div class="popup__content">
-            <button type="button" class="popup__close-button popup__close-button-place"> <img class="popup__close-icon" src="./images/close-button.svg" alt="Кнопка закрытия всплывающего окна"> </button>
+            <button type="button" class="popup__close-button popup__close-button-place"> <img class="popup__close-icon" src="<%=require('./images/close-button.svg')%>" alt="Кнопка закрытия всплывающего окна"> </button>
             <h3 class="popup__title"> Новое место </h3>
             <form name="profile-place-form" class="popup__form popup__place-form" novalidate>
                 <input type="text" name="title" id="input-title" class="popup__input popup__add-input" minlength="2" maxlength="30" pattern="^[A-Za-zА-Яа-яЁё\s\D]+" placeholder="Название" required data-error-message="Разрешены только латинские, кириллические буквы, знаки дефиса и пробелы">
@@ -83,7 +83,7 @@
 
     <div class="popup popup-photos">
         <div class="popup-photos__content">
-            <button type="button" class="popup__close-button popup__close-button-photos"> <img class="popup__close-icon" src="./images/close-button.svg" alt="Кнопка закрытия всплывающего окна"> </button>
+            <button type="button" class="popup__close-button popup__close-button-photos"> <img class="popup__close-icon" src="<%=require('./images/close-button.svg')%>" alt="Кнопка закрытия всплывающего окна"> </button>
             <img class="popup-photos__image" src="" alt="">
             <p class="popup-photos__title"></p>
         </div>
@@ -91,7 +91,7 @@
 
     <div class="popup popup-edit-avatar">
         <div class="popup__content">
-            <button type="button" class="popup__close-button popup__close-button-edit-avatar"> <img class="popup__close-icon" src="./images/close-button.svg" alt="Кнопка закрытия всплывающего окна"> </button>
+            <button type="button" class="popup__close-button popup__close-button-edit-avatar"> <img class="popup__close-icon" src="<%=require('./images/close-button.svg')%>" alt="Кнопка закрытия всплывающего окна"> </button>
             <h3 class="popup__title"> Обновить аватар </h3>
             <form name="profile-edit-form" class="popup__form popup__edit-avatar-form">
                 <input type="url" name="avatar" id="input-avatar" class="popup__input popup__edit-input" placeholder="Ссылка на новый аватар" required>

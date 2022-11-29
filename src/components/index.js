@@ -1,3 +1,4 @@
+import '../pages/index.css';
 
 import {initialCards} from './data.js';
 import {openPopup, closePopup, renderEditPopup, saveEditPopup, changeAvatar} from './modal.js';
