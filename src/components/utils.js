@@ -1,4 +1,4 @@
-import {openPopup, closePopup, renderEditPopup, saveEditPopup, changeAvatar} from './modal.js';
+import {openPopup, closePopup, renderEditPopup, saveEditPopup, changeAvatar, renderNewCardPopup} from './modal.js';
 
 function closePopupOverlay(evt){
     //Проверяем, если у нажатого элемента класс popup_opened, если нет - закрываем попап = клик по всему вне popup__content

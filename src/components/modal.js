@@ -1,4 +1,15 @@
+// import { validate } from 'schema-utils';
 import {closePopupOverlay, closePopupEsc} from './utils.js';
+import {toggleButtonState, hasInvalidInput} from './validate.js'; 
+
+const settings = {
+  formSelector: '.popup__form',
+  inputSelector: '.popup__input',
+  submitButtonSelector: '.popup__button-save',
+  disabledButtonClass: 'popup__button-save_disabled',
+  inputErrorClass: 'popup__input_type_error',
+  errorClass: 'popup__input-error_active',
+};
 
 //Объявляем переменные
 const popupCloseButtons = document.querySelectorAll('.popup__close-button');
@@ -25,6 +36,8 @@ const profileAvatar = document.querySelector('.profile__image');
 // popup New place
 const popupNewPlaceForm = document.querySelector('.popup__place-form');
 const popupNewPlaceSaveButton = popupNewPlaceForm.querySelector('.place-form__submit-button');
+const popupNewPlaceTitle = popupNewPlaceForm.querySelector('#input-title');
+const popupNewPlaceLink = popupNewPlaceForm.querySelector('#input-link');
 
 const popupNewPlace = document.querySelector('.popup-new-place');
 const popupNewPlaceButton = document.querySelector('.profile__add-button');
@@ -70,12 +83,23 @@ popupCloseButtons.forEach((item) =>
   )
 );
 
+function renderNewCardPopup(){
+  toggleButtonState(
+    [popupNewPlaceTitle, popupNewPlaceLink],
+    popupNewPlaceSaveButton,
+    settings,
+  );
+  openPopup(popupNewPlace);
+}
+
 popupEditButton.addEventListener('click', renderEditPopup);
 
 
-popupNewPlaceButton.addEventListener('click', function(){
-  openPopup(popupNewPlace);
-});
+// popupNewPlaceButton.addEventListener('click', function(){
+//   openPopup(popupNewPlace);
+// });
+
+popupNewPlaceButton.addEventListener('click', renderNewCardPopup);
 
 popupEditAvatarButton.addEventListener('click', function(){
   openPopup(popupEditAvatar);
@@ -86,4 +110,4 @@ editForm.addEventListener('submit', saveEditPopup);
 //Добавляем слушателя на форму editAvatarForm
 editAvatarForm.addEventListener('submit', changeAvatar);
 
-export {popupNewPlace, popupNewPlaceForm, openPopup, closePopup, renderEditPopup, saveEditPopup, changeAvatar};
+export {popupNewPlace, popupNewPlaceForm, openPopup, closePopup, renderEditPopup, saveEditPopup, changeAvatar, renderNewCardPopup};

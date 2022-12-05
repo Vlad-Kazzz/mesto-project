@@ -1,5 +1,5 @@
 import {initialCards} from './data.js';
-import {popupNewPlace, popupNewPlaceForm, openPopup, closePopup, renderEditPopup, saveEditPopup, changeAvatar} from './modal.js';
+import {popupNewPlace, popupNewPlaceForm, openPopup, closePopup, renderEditPopup, saveEditPopup, changeAvatar, renderNewCardPopup} from './modal.js';
 
 // Cards
 const photoGridContainer = document.querySelector('.photo-grid__list');
@@ -63,7 +63,6 @@ function addNewPhoto(evt) {
 }
 
 function openImagePlacePopup(evt){
-    openPopup(popupImage);
     const popupImg = evt.target;
     const popupImgElement = popupImg.closest('.photo-grid__element');
     const popupImgTitle = popupImgElement.querySelector('.photo-grid__title');
@@ -71,6 +70,8 @@ function openImagePlacePopup(evt){
     popupImagePhoto.src = popupImg.src;
     popupImagePhoto.alt = popupImgTitle.textContent;
     popupImageTitle.textContent = popupImgTitle.textContent;
+
+    openPopup(popupImage);
 }
   
 popupNewPlaceForm.addEventListener('submit', addNewPhoto);
