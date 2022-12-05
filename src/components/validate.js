@@ -1,23 +1,26 @@
 
-const showInputError = (formElement, inputElement, errorMessage) => {
+//Показать ошибку
+const showInputError = (formElement, inputElement, errorMessage, settings) => {
     const errorElement = formElement.querySelector(`.${inputElement.id}-error`);
-    inputElement.classList.add('popup__input_type_error'); 
+    inputElement.classList.add(settings.inputErrorClass); 
     errorElement.textContent = errorMessage;
-    errorElement.classList.add('popup__input-error_active');
+    errorElement.classList.add(settings.errorClass);
 } 
-  
-const hideInputError = (formElement, inputElement) => {
+
+//Убрать ошибку
+const hideInputError = (formElement, inputElement, settings) => {
     const errorElement = formElement.querySelector(`.${inputElement.id}-error`);
-    inputElement.classList.remove('popup__input_type_error'); 
+    inputElement.classList.remove(settings.inputErrorClass); 
     errorElement.textContent = '';
-    errorElement.classList.remove('popup__input-error_active');
+    errorElement.classList.remove(settings.errorClass);
 }
-  
-const checkInputValidity = (formElement, inputElement) => {
+
+//Проверка полей на валидность
+const checkInputValidity = (formElement, inputElement, settings) => {
     if (!inputElement.validity.valid){
-      showInputError(formElement, inputElement, inputElement.validationMessage);
+      showInputError(formElement, inputElement, inputElement.validationMessage, settings);
     } else {
-      hideInputError(formElement, inputElement);
+      hideInputError(formElement, inputElement, settings);
     }
   
     if (inputElement.validity.patternMismatch){
@@ -26,45 +29,47 @@ const checkInputValidity = (formElement, inputElement) => {
       inputElement.setCustomValidity('');
     }
 }
+
+//Обработчик полей формы
+const setEventListeners = (formElement, settings) => {
+    const inputList = Array.from(formElement.querySelectorAll(settings.inputSelector)); 
+    const buttonElement = formElement.querySelector(settings.submitButtonSelector); 
   
-const setEventListeners = (formElement) => {
-    const inputList = Array.from(formElement.querySelectorAll('.popup__input')); 
-    const buttonElement = formElement.querySelector('.popup__button-save'); 
-  
-    toggleButtonState(inputList, buttonElement);
+    toggleButtonState(inputList, buttonElement, settings);
   
     inputList.forEach((inputElement) => {
       inputElement.addEventListener('input', function(){
-        checkInputValidity(formElement, inputElement);
-        toggleButtonState(inputList, buttonElement);
+        checkInputValidity(formElement, inputElement, settings);
+        toggleButtonState(inputList, buttonElement, settings);
       });
     });
   
 }
   
-const enableValidation = () => { //
-    //selectors = settings; 
-    const formList = Array.from(document.querySelectorAll('.popup__form')); 
+const enableValidation = (settings) => { 
+    const formList = Array.from(document.querySelectorAll(settings.formSelector)); 
     formList.forEach((formElement) => {
       formElement.addEventListener('submit', function (evt){
         evt.preventDefault();
       });
-      setEventListeners(formElement);
+      setEventListeners(formElement, settings);
     });
 }
-  
+
+//Функция проверки массивов полей. True = хотя бы 1 поле не валидно. False = если все поля валидны
 const hasInvalidInput = (inputList) => {
     return inputList.some((inputElement) => {
       return !inputElement.validity.valid;
     })
 }
-  
-const toggleButtonState = (inputList, buttonElement) => {
+
+//Функция принимающая поля формы и кнопку, которая меняется в зависимости от валидности полей
+const toggleButtonState = (inputList, buttonElement, settings) => {
     if (hasInvalidInput(inputList)) {
-      buttonElement.classList.add('popup__button-save_disabled'); 
+      buttonElement.classList.add(settings.disabledButtonClass); 
       buttonElement.disabled = true;
     } else {
-      buttonElement.classList.remove('popup__button-save_disabled'); 
+      buttonElement.classList.remove(settings.disabledButtonClass); 
       buttonElement.disabled = false;
     }
 }
