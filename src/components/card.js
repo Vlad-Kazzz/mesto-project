@@ -1,18 +1,7 @@
 import {initialCards} from './data.js';
 import {popupNewPlace, popupNewPlaceForm, openPopup, closePopup, renderEditPopup, saveEditPopup, changeAvatar, renderNewCardPopup} from './modal.js';
+import {photoGridContainer, photoTemplate, photoTitleInput, photoLinkInput, popupImage, popupImagePhoto, popupImageTitle} from './variables.js';
 
-// Cards
-const photoGridContainer = document.querySelector('.photo-grid__list');
-const photoTemplate = document.querySelector('#photos-element').content;
-
-// Add New place
-const photoTitleInput = document.querySelector('#input-title');
-const photoLinkInput = document.querySelector('#input-link');
-
-// Images popup
-const popupImage = document.querySelector('.popup-photos');
-const popupImagePhoto = document.querySelector('.popup-photos__image');
-const popupImageTitle = document.querySelector('.popup-photos__title');
 
 // Рендер карточек 
 function createPhoto (name, link) {
@@ -33,17 +22,11 @@ function createPhoto (name, link) {
     return photoElement;
 }
 
-// Пройдемся по объекту initialCards
-function renderPhotos(){
-    initialCards.forEach((item)=> 
-    renderPhoto(createPhoto(item.name, item.link), photoGridContainer)
-    );
-}
+// // Пройдемся по объекту initialCards
+// function renderPhotos(){}
   
-  // Добавление карточек в разметку
-function renderPhoto(photo, container){
-    container.prepend(photo);
-}
+//   // Добавление карточек в разметку
+// function renderPhoto(photo, container){}
   
 // renderPhotos();
   
@@ -53,14 +36,7 @@ function deletePhoto(evt) {
     photo.remove();
   }
   
-function addNewPhoto(evt) {
-    evt.preventDefault();
-    renderPhoto(createPhoto(photoTitleInput.value, photoLinkInput.value), photoGridContainer);
-    photoTitleInput.value = '';
-    photoLinkInput.value = '';
-  
-    closePopup(popupNewPlace);
-}
+// function addNewPhoto(evt) {}
 
 function openImagePlacePopup(evt){
     const popupImg = evt.target;
@@ -74,6 +50,6 @@ function openImagePlacePopup(evt){
     openPopup(popupImage);
 }
   
-popupNewPlaceForm.addEventListener('submit', addNewPhoto);
+// popupNewPlaceForm.addEventListener('submit', addNewPhoto);
 
-export {createPhoto, renderPhotos, renderPhoto, deletePhoto, addNewPhoto, openImagePlacePopup};
+export {createPhoto, deletePhoto, openImagePlacePopup};

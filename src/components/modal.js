@@ -1,6 +1,8 @@
 // import { validate } from 'schema-utils';
 import {closePopupOverlay, closePopupEsc} from './utils.js';
 import {toggleButtonState, hasInvalidInput} from './validate.js'; 
+import {popupCloseButtons, popupEdit, popupEditButton, editForm, profileName, profileAbout, inputName, inputAbout, popupEditSaveButton, popupEditAvatar, popupEditAvatarButton, 
+  inputAvatar, editAvatarForm, popupEditAvatarSaveButton, profileAvatar, popupNewPlaceForm, popupNewPlaceSaveButton, popupNewPlaceTitle, popupNewPlaceLink, popupNewPlace, popupNewPlaceButton} from './variables.js';
 
 const settings = {
   formSelector: '.popup__form',
@@ -10,37 +12,6 @@ const settings = {
   inputErrorClass: 'popup__input_type_error',
   errorClass: 'popup__input-error_active',
 };
-
-//Объявляем переменные
-const popupCloseButtons = document.querySelectorAll('.popup__close-button');
-
-//popup edit profile
-const popupEdit = document.querySelector('.popup-edit');
-const popupEditButton = document.querySelector('.profile__edit-button');
-const editForm = document.querySelector('.popup__edit-form');
-const profileName = document.querySelector('.profile__name');
-const profileAbout = document.querySelector('.profile__about');
-const inputName = document.querySelector('#input-name');
-const inputAbout = document.querySelector('#input-about');
-const popupEditSaveButton = editForm.querySelector('.edit-form__submit-button');
-
-//popup edit avatar
-const popupEditAvatar = document.querySelector('.popup-edit-avatar');
-const popupEditAvatarButton = document.querySelector('.profile__image-container');
-const inputAvatar = document.querySelector('#input-avatar');
-const editAvatarForm = document.querySelector('.popup__edit-avatar-form');
-const popupEditAvatarSaveButton = editAvatarForm.querySelector('.edit-avatar-form__submit-button');
-
-const profileAvatar = document.querySelector('.profile__image');
-
-// popup New place
-const popupNewPlaceForm = document.querySelector('.popup__place-form');
-const popupNewPlaceSaveButton = popupNewPlaceForm.querySelector('.place-form__submit-button');
-const popupNewPlaceTitle = popupNewPlaceForm.querySelector('#input-title');
-const popupNewPlaceLink = popupNewPlaceForm.querySelector('#input-link');
-
-const popupNewPlace = document.querySelector('.popup-new-place');
-const popupNewPlaceButton = document.querySelector('.profile__add-button');
 
 // Открытие и закрытие попапов (popup-edit, popup-new-place)
 function openPopup(popupElement){
@@ -56,25 +27,12 @@ function closePopup(popupElement){
 }
 
   //Сохранение переменных из инпутов в Popup-edit и наоборот
-function renderEditPopup(){
-    openPopup(popupEdit);
-    inputName.value = profileName.textContent;
-    inputAbout.value = profileAbout.textContent;
-}
+// function renderEditPopup(){}
   
-function saveEditPopup(evt){
-      evt.preventDefault();
-      profileName.textContent = inputName.value;
-      profileAbout.textContent = inputAbout.value;
-      closePopup(popupEdit);
-}
+// function saveEditPopup(evt){}
 
-//Меняем аватар применяя полученную ссылку из input
-function changeAvatar(evt){
-    evt.preventDefault();
-    profileAvatar.src = inputAvatar.value;
-    closePopup(popupEditAvatar);
-}
+// //Меняем аватар применяя полученную ссылку из input
+// function changeAvatar(evt){}
 
 // Закрытие всех попапов нажатием кнопки "закрыть попап" для всех модальных окон
 popupCloseButtons.forEach((item) => 
@@ -83,31 +41,14 @@ popupCloseButtons.forEach((item) =>
   )
 );
 
-function renderNewCardPopup(){
-  toggleButtonState(
-    [popupNewPlaceTitle, popupNewPlaceLink],
-    popupNewPlaceSaveButton,
-    settings,
-  );
-  openPopup(popupNewPlace);
-}
-
-popupEditButton.addEventListener('click', renderEditPopup);
-
+//Чтобы после первой добавленного поста и открытии модального окна добавления нового места кнопка не была доступна сразу
+// function renderNewCardPopup(){}
 
 // popupNewPlaceButton.addEventListener('click', function(){
 //   openPopup(popupNewPlace);
 // });
 
-popupNewPlaceButton.addEventListener('click', renderNewCardPopup);
+// popupNewPlaceButton.addEventListener('click', renderNewCardPopup); 
 
-popupEditAvatarButton.addEventListener('click', function(){
-  openPopup(popupEditAvatar);
-});
 
-editForm.addEventListener('submit', saveEditPopup);
-
-//Добавляем слушателя на форму editAvatarForm
-editAvatarForm.addEventListener('submit', changeAvatar);
-
-export {popupNewPlace, popupNewPlaceForm, openPopup, closePopup, renderEditPopup, saveEditPopup, changeAvatar, renderNewCardPopup};
+export {openPopup, closePopup, settings};
