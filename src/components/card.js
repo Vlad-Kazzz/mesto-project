@@ -1,15 +1,15 @@
 import {initialCards} from './data.js';
 import {popupNewPlace, popupNewPlaceForm, openPopup, closePopup, renderEditPopup, saveEditPopup, changeAvatar, renderNewCardPopup} from './modal.js';
 import {photoGridContainer, photoTemplate, photoTitleInput, photoLinkInput, popupImage, popupImagePhoto, popupImageTitle} from './variables.js';
-
+import {userId, setUserId, handleError, getData, getProfileData, getInitialCards, updateProfileInfo, createCard, deleteCard} from './api.js';
 
 // Рендер карточек 
-function createPhoto (name, link) {
+function createPhoto (card) { //(name, link)
     const photoElement = photoTemplate.querySelector('.photo-grid__element').cloneNode(true);
-    photoElement.querySelector('.photo-grid__title').textContent = name;
+    photoElement.querySelector('.photo-grid__title').textContent = card.name;
     const photoImage = photoElement.querySelector('.photo-grid__image');
-    photoImage.src = link;
-    photoImage.alt = name;
+    photoImage.src = card.link;
+    photoImage.alt = card.name;
   
     photoImage.addEventListener('click', openImagePlacePopup);
   
