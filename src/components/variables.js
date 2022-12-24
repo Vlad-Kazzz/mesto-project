@@ -27,8 +27,9 @@ const popupEditSaveButton = editForm.querySelector('.edit-form__submit-button');
 //popup edit avatar
 const popupEditAvatar = document.querySelector('.popup-edit-avatar');
 const popupEditAvatarButton = document.querySelector('.profile__image-container');
-const inputAvatar = document.querySelector('#input-avatar');
+
 const editAvatarForm = document.querySelector('.popup__edit-avatar-form');
+const inputAvatar = editAvatarForm.querySelector('#input-avatar');
 const popupEditAvatarSaveButton = editAvatarForm.querySelector('.edit-avatar-form__submit-button');
 
 const profileAvatar = document.querySelector('.profile__image');

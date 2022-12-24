@@ -4,9 +4,9 @@ import {initialCards} from './data.js';
 import {openPopup, closePopup, settings} from './modal.js';
 import {closePopupOverlay, closePopupEsc} from './utils.js';
 import {showInputError, hideInputError, checkInputValidity, setEventListeners, enableValidation, hasInvalidInput, toggleButtonState} from './validate.js';
-import {createPhoto, deletePhoto, openImagePlacePopup} from './card.js';
+import {createPhoto, openImagePlacePopup, likeByCurrentUser} from './card.js';
 import {photoGridContainer, photoTemplate, photoTitleInput, photoLinkInput, popupImage, popupImagePhoto, popupImageTitle, popupCloseButtons, popupEdit, popupEditButton, editForm, profileName, profileAbout, inputName, inputAbout, popupEditSaveButton, popupEditAvatar, popupEditAvatarButton, inputAvatar, editAvatarForm, popupEditAvatarSaveButton, profileAvatar, popupNewPlaceForm, popupNewPlaceSaveButton, popupNewPlaceTitle, popupNewPlaceLink, popupNewPlace, popupNewPlaceButton} from './variables.js';
-import {userId, setUserId, handleError, getData, getProfileData, getInitialCards, updateProfileInfo, createCard, deleteCard} from './api.js';
+import {userId, setUserId, handleError, getData, getProfileData, getInitialCards, updateProfileInfo, createCard, deleteCard, putLike, deleteLike, updateAvatar} from './api.js';
 
 
 //CARD
@@ -47,12 +47,16 @@ function addNewPhoto(evt) {
 }
 
 //Чтобы после первой добавленного поста и открытии модального окна добавления нового места кнопка не была доступна сразу
-function renderNewCardPopup(){ 
+function renderNewCardPopup(){
+  //Очищаем строки заполнения при открытии, если они были заполненны ранее и не отправленны
+  popupNewPlaceForm.reset();
+  
   toggleButtonState(
     [popupNewPlaceTitle, popupNewPlaceLink],
     popupNewPlaceSaveButton,
     settings,
   );
+  
   openPopup(popupNewPlace);
 }
 
@@ -96,11 +100,42 @@ popupEditButton.addEventListener('click', renderEditPopup);
 editForm.addEventListener('submit', saveEditPopup);
 
 //Меняем аватар применяя полученную ссылку из input
+function renderAvatarPopup(){
+    //Очищаем поле ввода ссылки на аватар
+    editAvatarForm.reset();
+
+    toggleButtonState(
+      [inputAvatar],
+      popupEditAvatarSaveButton,
+      settings,
+    );
+
+    openPopup(popupEditAvatar);
+}
+
+
 function changeAvatar(evt){ 
     evt.preventDefault();
-    profileAvatar.src = inputAvatar.value;
-    closePopup(popupEditAvatar);
+
+    popupEditAvatarSaveButton.textContent = "Сохранение...";
+
+    updateAvatar(inputAvatar.value)
+      .then ((data) => {
+        profileAvatar.src = data.avatar;
+        closePopup(popupEditAvatar)
+      })
+      .catch (handleError)
+      .finally (() => {
+        setTimeout(() => popupEditAvatarSaveButton.textContent = "Сохранить", 1000);
+      })
+
+
+    // profileAvatar.src = inputAvatar.value;
+    // closePopup(popupEditAvatar);
 }
+
+popupEditAvatarButton.addEventListener("click", renderAvatarPopup);
+editAvatarForm.addEventListener("submit", changeAvatar);
 
 //Чтобы после первой добавленного поста и открытии модального окна добавления нового места кнопка не была доступна сразу
 // function renderNewCardPopup(){ 
@@ -115,13 +150,13 @@ function changeAvatar(evt){
 
 // popupNewPlaceButton.addEventListener('click', renderNewCardPopup);
 
-popupEditAvatarButton.addEventListener('click', function(){ 
-  openPopup(popupEditAvatar);
-});
+// popupEditAvatarButton.addEventListener('click', function(){ 
+//   openPopup(popupEditAvatar);
+// });
 
 
 //Добавляем слушателя на форму editAvatarForm
-editAvatarForm.addEventListener('submit', changeAvatar); 
+// editAvatarForm.addEventListener('submit', changeAvatar); 
 
 // getProfileData();
 // getInitialCards();
@@ -147,6 +182,7 @@ Promise.all ([
     setUserId(data[0]._id);
     profileName.textContent = data[0].name;
     profileAbout.textContent = data[0].about;
+    profileAvatar.src = data[0].avatar;
 
     data[1].reverse().forEach(card => {
       renderPhoto(createPhoto(card), photoGridContainer);

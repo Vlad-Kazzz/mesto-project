@@ -65,10 +65,21 @@ function deleteCard (id){
     return getData (`cards/${id}`, "DELETE");
 }
 
+function putLike (id){
+    return getData(`cards/likes/${id}`, "PUT");
+}
+
+function deleteLike(id){
+    return getData(`cards/likes/${id}`, "DELETE");
+}
+
+function updateAvatar(link){
+    return getData("users/me/avatar", "PATCH", {avatar: link})
+}
 
 
 
 
 
 
-export {userId, setUserId, handleError, getData, getProfileData, getInitialCards, updateProfileInfo, createCard, deleteCard};
+export {userId, setUserId, handleError, getData, getProfileData, getInitialCards, updateProfileInfo, createCard, deleteCard, putLike, deleteLike, updateAvatar};
