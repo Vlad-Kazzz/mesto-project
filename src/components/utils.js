@@ -3,12 +3,12 @@ import {openPopup, closePopup, renderEditPopup, saveEditPopup, changeAvatar, ren
 function closePopupOverlay(evt){
     //Проверяем, если у нажатого элемента класс popup_opened, если нет - закрываем попап = клик по всему вне popup__content
     if (evt.target.classList.contains('popup_opened')){
-      closePopup(document.querySelector('.popup_opened'));
+      closePopup(evt.target); //document.querySelector('.popup_opened')
     }
 }
 
 function closePopupEsc(evt){ //
-    if (evt.keyCode === 27){
+    if (evt.key === "Escape"){ // evt.keyCode === 27
       closePopup(document.querySelector('.popup_opened'));
     }
 }

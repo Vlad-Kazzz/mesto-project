@@ -29,14 +29,14 @@ function createPhoto (card) { //(name, link)
       if (isAlreadyLiked){
         deleteLike(card._id)
           .then ((data) => {
-            photoElement.querySelector('.photo-grid__like-button').classList.remove('photo-grid__like-button_active');
+            likeButton.classList.remove('photo-grid__like-button_active'); //photoElement.querySelector('.photo-grid__like-button')
             likesCountText.textContent = data.likes.length; // Длина массива = кол.во лайков
           })
           .catch (handleError)
       } else {
         putLike(card._id)
           .then ((data) => {
-            photoElement.querySelector('.photo-grid__like-button').classList.add('photo-grid__like-button_active');
+            likeButton.classList.add('photo-grid__like-button_active'); //photoElement.querySelector('.photo-grid__like-button')
             likesCountText.textContent = data.likes.length; // Длина массива = кол.во лайков 
           })
           .catch (handleError)
