@@ -43,6 +43,11 @@ const popupNewPlaceLink = popupNewPlaceForm.querySelector('#input-link');
 const popupNewPlace = document.querySelector('.popup-new-place');
 const popupNewPlaceButton = document.querySelector('.profile__add-button');
 
+// popup Confirm Delete
+const popupConfirmDelete = document.querySelector('.popup__confirm-delete');
+const popupConfirmDeleteForm = document.querySelector('.popup__confirm-delete-form');
+const popupConfirmDeleteSubmitButton = popupConfirmDeleteForm.querySelector('.popup__confirm-delete-button');
+
 export {photoGridContainer, photoTemplate, photoTitleInput, photoLinkInput, popupImage, popupImagePhoto, popupImageTitle,
 popupCloseButtons, popupEdit, popupEditButton, editForm, profileName, profileAbout, inputName, inputAbout, popupEditSaveButton, popupEditAvatar, popupEditAvatarButton, 
-inputAvatar, editAvatarForm, popupEditAvatarSaveButton, profileAvatar, popupNewPlaceForm, popupNewPlaceSaveButton, popupNewPlaceTitle, popupNewPlaceLink, popupNewPlace, popupNewPlaceButton};
+inputAvatar, editAvatarForm, popupEditAvatarSaveButton, profileAvatar, popupNewPlaceForm, popupNewPlaceSaveButton, popupNewPlaceTitle, popupNewPlaceLink, popupNewPlace, popupNewPlaceButton, popupConfirmDelete, popupConfirmDeleteForm, popupConfirmDeleteSubmitButton};

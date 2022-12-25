@@ -1,6 +1,6 @@
 import {initialCards} from './data.js';
 import {popupNewPlace, popupNewPlaceForm, openPopup, closePopup, renderEditPopup, saveEditPopup, changeAvatar, renderNewCardPopup} from './modal.js';
-import {photoGridContainer, photoTemplate, photoTitleInput, photoLinkInput, popupImage, popupImagePhoto, popupImageTitle} from './variables.js';
+import {photoGridContainer, photoTemplate, photoTitleInput, photoLinkInput, popupImage, popupImagePhoto, popupImageTitle, popupConfirmDelete, popupConfirmDeleteForm, popupConfirmDeleteSubmitButton} from './variables.js';
 import {userId, setUserId, handleError, getData, getProfileData, getInitialCards, updateProfileInfo, createCard, deleteCard, putLike, deleteLike} from './api.js';
 
 //Данной функцией проверяем кто лайкнул пост. Если сам владелец выложил и лайкнул - то при загрузке карточка будет уже лайкнута
@@ -48,12 +48,33 @@ function createPhoto (card) { //(name, link)
     if (userId!==cardOwnerId){
       photoElement.querySelector('.photo-grid__delete-button').classList.add('photo-grid__delete-button_hidden');
     } else { //Обрабатываем удаление карточки на сервере (Добавить модальное окно подтверждения удаления)
-      photoElement.querySelector('.photo-grid__delete-button').addEventListener('click', function(){
-        deleteCard(card._id)
+      photoElement.querySelector('.photo-grid__delete-button').addEventListener('click', function (evt){
+        openPopup(popupConfirmDelete);
+        popupConfirmDelete.id = card._id; //evt.target.parentElement.id;
+        popupConfirmDelete.card = evt.target.closest('.photo-grid__element');
+
+        // console.log(popupConfirmDelete.card);
+        // popupDeletePicture.addEventListener("submit", removeCard);
+
+        popupConfirmDeleteForm.addEventListener('submit', function removingCard (evt){ //Добавим название, тк слушатель потом надо будет убрать, чтобы во вкладке Network не было повторящихся запросов (их кол.во = сколько раз нажал на кнопку удаления)
+          evt.preventDefault();
+          popupConfirmDeleteSubmitButton.textContent = "Удаление...";
+          deleteCard(popupConfirmDelete.id)     
           .then (() => {
-            photoElement.remove();
+            popupConfirmDelete.card.remove();               
+            closePopup(popupConfirmDelete);
+            popupConfirmDeleteForm.removeEventListener('submit', removingCard); // Убираем слушателя события (см. вышенаписанное)
           })
           .catch (handleError)
+          .finally(() => {
+            setTimeout(() => popupConfirmDeleteSubmitButton.textContent = "Да", 1000);
+          })
+        })
+        // deleteCard(card._id)
+        //   .then (() => {
+        //     photoElement.remove();
+        //   })
+        //   .catch (handleError)
       })
     }
 

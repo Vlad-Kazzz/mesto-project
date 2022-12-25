@@ -103,6 +103,18 @@
         </div>
     </div>
 
+    <div class="popup popup__confirm-delete">
+        <div class="popup__content popup__content_confirm-delete">
+            <button type="button" class="popup__close-button"> <img class="popup__close-icon" src="<%=require('./images/close-button.svg')%>" alt="Кнопка закрытия всплывающего окна"> </button>
+            <h3 class="popup__title"> Вы уверены? </h3>
+            <form name="popup-confirm-delete-form" class="popup__form popup__confirm-delete-form">
+                <button type="submit" class="popup__button-save popup__confirm-delete-button">
+                    Да
+                </button>
+            </form>
+        </div>
+    </div>
+
     <template id="photos-element">
         <li class="photo-grid__element"> 
             <button type="button" class="photo-grid__delete-button"> </button>
