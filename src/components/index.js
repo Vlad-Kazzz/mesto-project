@@ -8,6 +8,7 @@ import {createPhoto, openImagePlacePopup, likeByCurrentUser} from './card.js';
 import {photoGridContainer, photoTemplate, photoTitleInput, photoLinkInput, popupImage, popupImagePhoto, popupImageTitle, popupCloseButtons, popupEdit, popupEditButton, editForm, profileName, profileAbout, inputName, inputAbout, popupEditSaveButton, popupEditAvatar, popupEditAvatarButton, inputAvatar, editAvatarForm, popupEditAvatarSaveButton, profileAvatar, popupNewPlaceForm, popupNewPlaceSaveButton, popupNewPlaceTitle, popupNewPlaceLink, popupNewPlace, popupNewPlaceButton, popupConfirmDelete, popupConfirmDeleteForm, popupConfirmDeleteSubmitButton} from './variables.js';
 import {userId, setUserId, handleError, getData, getProfileData, getInitialCards, updateProfileInfo, createCard, deleteCard, putLike, deleteLike, updateAvatar} from './api.js';
 
+import Popup from './PopupOOP';
 
 //CARD
 
@@ -60,8 +61,12 @@ function renderNewCardPopup(){
   openPopup(popupNewPlace);
 }
 
-popupNewPlaceButton.addEventListener('click', renderNewCardPopup);
-popupNewPlaceForm.addEventListener('submit', addNewPhoto); 
+
+const popupNewCard = new Popup(popupNewPlace);
+popupNewCard.setEventListeners()
+// console.log(popupNewCard)
+popupNewPlaceButton.addEventListener('click', () => {popupNewCard.open()});
+// popupNewPlaceForm.addEventListener('submit', addNewPhoto); 
 
 //MODAL
 
@@ -96,8 +101,8 @@ function saveEditPopup(evt){
         });
 }
 
-popupEditButton.addEventListener('click', renderEditPopup);
-editForm.addEventListener('submit', saveEditPopup);
+// popupEditButton.addEventListener('click', renderEditPopup);
+// editForm.addEventListener('submit', saveEditPopup);
 
 //Меняем аватар применяя полученную ссылку из input
 function renderAvatarPopup(){
@@ -134,8 +139,8 @@ function changeAvatar(evt){
     // closePopup(popupEditAvatar);
 }
 
-popupEditAvatarButton.addEventListener("click", renderAvatarPopup);
-editAvatarForm.addEventListener("submit", changeAvatar);
+// popupEditAvatarButton.addEventListener("click", renderAvatarPopup);
+// editAvatarForm.addEventListener("submit", changeAvatar);
 
 //Чтобы после первой добавленного поста и открытии модального окна добавления нового места кнопка не была доступна сразу
 // function renderNewCardPopup(){ 

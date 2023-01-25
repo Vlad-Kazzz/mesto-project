@@ -35,11 +35,11 @@ function closePopup(popupElement){
 // function changeAvatar(evt){}
 
 // Закрытие всех попапов нажатием кнопки "закрыть попап" для всех модальных окон
-popupCloseButtons.forEach((item) => 
-  item.addEventListener('click', (evt) =>
-    closePopup(evt.target.closest('.popup'))
-  )
-);
+// popupCloseButtons.forEach((item) => 
+//   item.addEventListener('click', (evt) =>
+//     closePopup(evt.target.closest('.popup'))
+//   )
+// );
 
 //Чтобы после первой добавленного поста и открытии модального окна добавления нового места кнопка не была доступна сразу
 // function renderNewCardPopup(){}
