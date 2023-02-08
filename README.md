@@ -25,7 +25,8 @@
 **Ссылка и почта напарника**
 
 * iakovzelenkov@gmail.com
-* [GitHub](https://github.com/IakovZelenkov)
+* [GitHub напарника](https://github.com/IakovZelenkov)
+* [Ссылка на GitHub репозиторий](https://github.com/IakovZelenkov/mesto-project/tree/feat/mesto-update)
 
 **Чеклист**
 
